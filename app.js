@@ -46,12 +46,18 @@ app.get("/models", async (request, response) => {
 
 app.get("/modelscount", async (request, response) => {
   const modelData = await CarModel.find({});
+  const carData = await Car.find({});
 
-  // Car.countDocuments({ model_id: "611561b55e2a1209bca504bd" }, (err, count) => {
-  //   console.log("%d", count);
-  // });
+  const data = await modelData.map((element) => ({
+    _id: element._id,
+    model: element.model,
+    price: element.price,
+    count: carData.filter(
+      (item) => item.model_id.toString() === element._id.toString()
+    ).length,
+  }));
 
-  response.json(modelData);
+  response.json(data);
 });
 
 app.get("/vehicles", async (request, response) => {
