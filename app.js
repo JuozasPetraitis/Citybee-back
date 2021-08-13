@@ -50,9 +50,7 @@ app.get("/modelscount", async (request, response) => {
   //   console.log("%d", count);
   // });
 
-  let data = [];
-  data.push(vehicleData, modelData);
-  response.json(data);
+  response.json(modelData);
 });
 
 app.get("/vehicles", async (request, response) => {
