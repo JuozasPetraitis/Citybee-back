@@ -37,12 +37,9 @@ mongoose.connect(MONGO, OPTIONS, () => {
 app.get("/", (request, response) => {
   response.send("Working");
 });
+
 app.get("/models", async (request, response) => {
-  try {
-    const data = await CarModel.find();
-  } catch (error) {
-    console.log(error);
-  }
+  const data = await CarModel.find();
 
   response.json(data);
 });
