@@ -38,7 +38,11 @@ app.get("/", (request, response) => {
   response.send("Working");
 });
 app.get("/models", async (request, response) => {
-  const data = await CarModel.find({});
+  try {
+    const data = await CarModel.find();
+  } catch (error) {
+    console.log(error);
+  }
 
   response.json(data);
 });
